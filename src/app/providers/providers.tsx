@@ -1,9 +1,5 @@
-import { Button } from '../../shared/components/ui/button'
+import { Routes } from '../routes/routes'
 
 export function Providers() {
-  return (
-    <div>
-      <Button>Click me</Button>
-    </div>
-  )
+  return <Routes />
 }
