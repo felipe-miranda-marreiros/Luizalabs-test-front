@@ -10,7 +10,6 @@ import { Input } from '@/shared/components/ui/input'
 import { cn } from '@/shared/lib'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
-import { loginFormSchema, type LoginFormSchema } from './LoginFormSchema'
 import {
   Form,
   FormControl,
@@ -19,20 +18,23 @@ import {
   FormLabel,
   FormMessage
 } from '@/shared/components/ui/form'
+import { signUpFormSchema, type SignUpFormSchema } from './SignUpFormSchema'
 
-export function LoginForm({
+export function SignUpForm({
   className,
   ...props
 }: React.ComponentProps<'div'>) {
-  const form = useForm<LoginFormSchema>({
-    resolver: zodResolver(loginFormSchema),
+  const form = useForm<SignUpFormSchema>({
+    resolver: zodResolver(signUpFormSchema),
     defaultValues: {
       email: '',
-      password: ''
+      password: '',
+      firstName: '',
+      lastName: ''
     }
   })
 
-  function onSubmit(data: LoginFormSchema) {
+  function onSubmit(data: SignUpFormSchema) {
     console.log(data)
   }
 
@@ -40,9 +42,9 @@ export function LoginForm({
     <div className={cn('flex flex-col gap-6', className)} {...props}>
       <Card>
         <CardHeader>
-          <CardTitle>Faça login em sua conta</CardTitle>
+          <CardTitle>Faça o cadastro da sua conta</CardTitle>
           <CardDescription>
-            Digite o seu e-mail abaixo para fazer login
+            Preencha os campos abaixo para criar sua conta
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -51,12 +53,38 @@ export function LoginForm({
               <div className="flex flex-col gap-6">
                 <FormField
                   control={form.control}
+                  name="firstName"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Nome</FormLabel>
+                      <FormControl>
+                        <Input placeholder="Seu nome" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="lastName"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Sobrenome</FormLabel>
+                      <FormControl>
+                        <Input placeholder="Seu sobrenome" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
                   name="email"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>E-mail</FormLabel>
                       <FormControl>
-                        <Input placeholder="Seu e-mail..." {...field} />
+                        <Input placeholder="Seu e-mail" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -69,7 +97,7 @@ export function LoginForm({
                     <FormItem>
                       <FormLabel>Senha</FormLabel>
                       <FormControl>
-                        <Input placeholder="Sua senha..." {...field} />
+                        <Input placeholder="Sua senha" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -77,14 +105,14 @@ export function LoginForm({
                 />
                 <div className="flex flex-col gap-3">
                   <Button type="submit" className="w-full">
-                    Entrar
+                    Cadastrar
                   </Button>
                 </div>
               </div>
               <div className="mt-4 text-center text-sm">
-                Não tem uma conta?{' '}
+                Deseja fazer login?{' '}
                 <a href="/sign-up" className="underline underline-offset-4">
-                  Fazer cadastro
+                  Voltar para o login
                 </a>
               </div>
             </form>
