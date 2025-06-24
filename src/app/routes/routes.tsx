@@ -1,5 +1,6 @@
 import { Dashboard } from '@/pages/Dashboard/ui/Dashboard'
 import { LoginPage } from '@/pages/Login/ui/LoginPage'
+import { ProductsPage } from '@/pages/Products'
 import { SignUpPage } from '@/pages/SignUp'
 import { createBrowserRouter, RouterProvider } from 'react-router'
 
@@ -19,49 +20,7 @@ const router = createBrowserRouter([
       {
         index: true,
         path: 'products',
-        element: (
-          <div>
-            <p>Produtos</p>
-            <p>Produtos</p>
-            <p>Produtos</p>
-            <p>Produtos</p>
-            <p>Produtos</p>
-            <p>Produtos</p>
-            <p>Produtos</p>
-            <p>Produtos</p>
-            <p>Produtos</p>
-            <p>Produtos</p>
-            <p>Produtos</p>
-            <p>Produtos</p>
-            <p>Produtos</p>
-            <p>Produtos</p>
-            <p>Produtos</p>
-            <p>Produtos</p>
-            <p>Produtos</p>
-            <p>Produtos</p>
-            <p>Produtos</p>
-            <p>Produtos</p>
-            <p>Produtos</p>
-            <p>Produtos</p>
-            <p>Produtos</p>
-            <p>Produtos</p>
-            <p>Produtos</p>
-            <p>Produtos</p>
-            <p>Produtos</p>
-            <p>Produtos</p>
-            <p>Produtos</p>
-            <p>Produtos</p>
-            <p>Produtos</p>
-            <p>Produtos</p>
-            <p>Produtos</p>
-            <p>Produtos</p>
-            <p>Produtos</p>
-            <p>Produtos</p>
-            <p>Produtos</p>
-            <p>Produtos</p>
-            <p>Produtos</p>
-          </div>
-        )
+        Component: ProductsPage
       },
       {
         index: true,
