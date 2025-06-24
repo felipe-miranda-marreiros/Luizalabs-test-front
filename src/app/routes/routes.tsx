@@ -1,3 +1,4 @@
+import { Dashboard } from '@/pages/Dashboard/ui/Dashboard'
 import { LoginPage } from '@/pages/Login/ui/LoginPage'
 import { SignUpPage } from '@/pages/SignUp'
 import { createBrowserRouter, RouterProvider } from 'react-router'
@@ -5,11 +6,69 @@ import { createBrowserRouter, RouterProvider } from 'react-router'
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <LoginPage />
+    Component: LoginPage
   },
   {
     path: '/sign-up',
-    element: <SignUpPage />
+    Component: SignUpPage
+  },
+  {
+    path: '/dashboard',
+    Component: Dashboard,
+    children: [
+      {
+        index: true,
+        path: 'products',
+        element: (
+          <div>
+            <p>Produtos</p>
+            <p>Produtos</p>
+            <p>Produtos</p>
+            <p>Produtos</p>
+            <p>Produtos</p>
+            <p>Produtos</p>
+            <p>Produtos</p>
+            <p>Produtos</p>
+            <p>Produtos</p>
+            <p>Produtos</p>
+            <p>Produtos</p>
+            <p>Produtos</p>
+            <p>Produtos</p>
+            <p>Produtos</p>
+            <p>Produtos</p>
+            <p>Produtos</p>
+            <p>Produtos</p>
+            <p>Produtos</p>
+            <p>Produtos</p>
+            <p>Produtos</p>
+            <p>Produtos</p>
+            <p>Produtos</p>
+            <p>Produtos</p>
+            <p>Produtos</p>
+            <p>Produtos</p>
+            <p>Produtos</p>
+            <p>Produtos</p>
+            <p>Produtos</p>
+            <p>Produtos</p>
+            <p>Produtos</p>
+            <p>Produtos</p>
+            <p>Produtos</p>
+            <p>Produtos</p>
+            <p>Produtos</p>
+            <p>Produtos</p>
+            <p>Produtos</p>
+            <p>Produtos</p>
+            <p>Produtos</p>
+            <p>Produtos</p>
+          </div>
+        )
+      },
+      {
+        index: true,
+        path: 'wish-list',
+        element: <div>Favoritos</div>
+      }
+    ]
   }
 ])
 
