@@ -19,6 +19,7 @@ import {
   FormMessage
 } from '@/shared/components/ui/form'
 import { signUpFormSchema, type SignUpFormSchema } from './SignUpFormSchema'
+import { Link } from 'react-router'
 
 export function SignUpForm({
   className,
@@ -111,9 +112,9 @@ export function SignUpForm({
               </div>
               <div className="mt-4 text-center text-sm">
                 Deseja fazer login?{' '}
-                <a href="/sign-up" className="underline underline-offset-4">
+                <Link to="/" className="underline underline-offset-4">
                   Voltar para o login
-                </a>
+                </Link>
               </div>
             </form>
           </Form>
