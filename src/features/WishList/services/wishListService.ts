@@ -83,11 +83,12 @@ function removeList(): void {
   }
 }
 
-function setupListOnLocalStorage(): void {
+function setupListOnLocalStorage(): boolean {
   const localData = localStorage.getItem(WISH_LIST_KEY)
   if (!localData) {
     localStorage.setItem(WISH_LIST_KEY, JSON.stringify(initialState))
   }
+  return true
 }
 
 export const wishListService = {

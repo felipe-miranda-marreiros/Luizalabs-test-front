@@ -2,35 +2,19 @@ import { Dashboard } from '@/pages/Dashboard/ui/Dashboard'
 import { LoginPage } from '@/pages/Login/ui/LoginPage'
 import { ProductsPage } from '@/pages/Products'
 import { SignUpPage } from '@/pages/SignUp'
-import { createBrowserRouter, RouterProvider } from 'react-router'
-
-const router = createBrowserRouter([
-  {
-    path: '/',
-    Component: LoginPage
-  },
-  {
-    path: '/sign-up',
-    Component: SignUpPage
-  },
-  {
-    path: '/dashboard',
-    Component: Dashboard,
-    children: [
-      {
-        index: true,
-        path: 'products',
-        Component: ProductsPage
-      },
-      {
-        index: true,
-        path: 'wish-list',
-        element: <div>Favoritos</div>
-      }
-    ]
-  }
-])
+import { Route, Routes as RRoutes } from 'react-router'
 
 export function Routes() {
-  return <RouterProvider router={router} />
+  return (
+    <RRoutes>
+      <Route>
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/sign-up" element={<SignUpPage />} />
+        <Route path="/dashboard" element={<Dashboard />}>
+          <Route index path="products" element={<ProductsPage />} />
+          <Route path="wish-list" element={<div>Favoritos</div>} />
+        </Route>
+      </Route>
+    </RRoutes>
+  )
 }
