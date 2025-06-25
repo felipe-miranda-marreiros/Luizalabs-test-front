@@ -1,4 +1,4 @@
-import type { Product, ProductAPI } from '../models/product'
+import type { Product, ProductAPI } from '../../models/product'
 
 function productAdapter(api: ProductAPI): Product {
   return {

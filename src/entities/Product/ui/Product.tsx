@@ -3,7 +3,10 @@ import type { PropsWithChildren } from 'react'
 
 export function ProductContainer({ children }: PropsWithChildren) {
   return (
-    <article className="flex flex-col border bg-gray-50 text-black border-gray-50/10 rounded-2xl p-3.5">
+    <article
+      data-testid="product-id"
+      className="flex flex-col border bg-gray-50 text-black border-gray-50/10 rounded-2xl p-3.5"
+    >
       {children}
     </article>
   )

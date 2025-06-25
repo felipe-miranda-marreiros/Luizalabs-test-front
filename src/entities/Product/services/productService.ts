@@ -1,5 +1,5 @@
 import type { Product } from '../models/product'
-import { productAdapters } from './productAdapter'
+import { productAdapters } from './adapters/productAdapter'
 import { productApi } from './productApi'
 
 async function productList(): Promise<Product[]> {

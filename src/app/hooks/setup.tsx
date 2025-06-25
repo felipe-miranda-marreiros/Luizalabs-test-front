@@ -12,11 +12,6 @@ function useSetup() {
 }
 
 export function Setup({ children }: PropsWithChildren) {
-  const isLoading = useSetup()
-
-  if (isLoading) {
-    return <p>Carregando</p>
-  }
-
-  return <>{children}</>
+  useSetup()
+  return children
 }
