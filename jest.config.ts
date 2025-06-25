@@ -3,7 +3,7 @@ import type { Config } from 'jest'
 const config: Config = {
   roots: ['<rootDir>/src'],
   clearMocks: true,
-  testEnvironment: 'jsdom',
+  testEnvironment: 'jest-fixed-jsdom',
   setupFilesAfterEnv: ['<rootDir>/src/shared/test/setup-tests.ts'],
   preset: 'ts-jest',
   moduleNameMapper: {

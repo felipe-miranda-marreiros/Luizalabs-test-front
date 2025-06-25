@@ -1,9 +1,6 @@
-import { cleanup } from '@testing-library/react'
 import '@testing-library/jest-dom'
-import { TextEncoder } from 'node:util'
+import { cleanup } from '@testing-library/react'
 
 afterAll(() => {
   cleanup()
 })
-
-global.TextEncoder = TextEncoder
