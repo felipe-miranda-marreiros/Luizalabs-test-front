@@ -19,6 +19,7 @@ import {
   FormLabel,
   FormMessage
 } from '@/shared/components/ui/form'
+import { Link } from 'react-router'
 
 export function LoginForm({
   className,
@@ -83,9 +84,9 @@ export function LoginForm({
               </div>
               <div className="mt-4 text-center text-sm">
                 Não tem uma conta?{' '}
-                <a href="/sign-up" className="underline underline-offset-4">
+                <Link to="/sign-up" className="underline underline-offset-4">
                   Fazer cadastro
-                </a>
+                </Link>
               </div>
             </form>
           </Form>
