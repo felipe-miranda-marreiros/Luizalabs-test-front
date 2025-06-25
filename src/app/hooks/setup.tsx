@@ -5,9 +5,7 @@ import type { PropsWithChildren } from 'react'
 function useSetup() {
   const { isLoading } = useQuery({
     queryKey: ['SETUP_APP'],
-    queryFn: async () => {
-      wishListService.setupListOnLocalStorage()
-    }
+    queryFn: wishListService.setupListOnLocalStorage
   })
 
   return isLoading
