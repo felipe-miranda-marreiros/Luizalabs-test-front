@@ -1,4 +1,4 @@
-interface WishListProps {
+export interface WishListProps {
   total: number
   items: {
     id: number
