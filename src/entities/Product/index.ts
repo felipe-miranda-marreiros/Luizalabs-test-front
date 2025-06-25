@@ -1,2 +1,3 @@
-export * from './ui/ProductItem'
+export * from './ui/Product'
 export * from './api/useProductList'
+export * from './models/product'

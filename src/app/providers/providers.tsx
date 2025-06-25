@@ -1,3 +1,4 @@
+import { Setup } from '../hooks/setup'
 import { Routes } from '../routes/routes'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
@@ -14,7 +15,9 @@ const queryClient = new QueryClient({
 export function Providers() {
   return (
     <QueryClientProvider client={queryClient}>
-      <Routes />
+      <Setup>
+        <Routes />
+      </Setup>
     </QueryClientProvider>
   )
 }
