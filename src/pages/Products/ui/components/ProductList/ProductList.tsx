@@ -7,7 +7,7 @@ export function ProductList() {
   return (
     <div className="grid grid-cols-3 gap-3.5">
       {data?.map((product) => {
-        return <ProductItem {...product} />
+        return <ProductItem key={product.id} {...product} />
       })}
     </div>
   )
