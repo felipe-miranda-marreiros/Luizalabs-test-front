@@ -19,12 +19,17 @@ import {
   FormLabel,
   FormMessage
 } from '@/shared/components/ui/form'
-import { Link } from 'react-router'
+import { Link, useNavigate } from 'react-router'
+import { useLogin } from '@/entities/Login'
+import { useQueryClient } from '@tanstack/react-query'
 
 export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<'div'>) {
+  const { mutate } = useLogin()
+  const navigate = useNavigate()
+  const queryClient = useQueryClient()
   const form = useForm<LoginFormSchema>({
     resolver: zodResolver(loginFormSchema),
     defaultValues: {
@@ -34,7 +39,12 @@ export function LoginForm({
   })
 
   function onSubmit(data: LoginFormSchema) {
-    console.log(data)
+    mutate(data, {
+      onSuccess: () => {
+        queryClient.resetQueries()
+        navigate('/dashboard/products')
+      }
+    })
   }
 
   return (

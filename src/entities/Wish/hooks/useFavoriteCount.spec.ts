@@ -1,11 +1,11 @@
 import { renderHook } from '@/shared/test/test-utils'
 import { useFavoriteCount } from './useFavoriteCount'
 import { waitFor } from '@testing-library/dom'
-import { wishListService } from '../services/wishListService'
+import { wishService } from '../services/wishService'
 
 describe('useFavoriteCount', () => {
   it('Should return 0 when wishlist is null', async () => {
-    jest.spyOn(wishListService, 'get').mockReturnValueOnce(null)
+    jest.spyOn(wishService, 'get').mockReturnValueOnce(null)
     const { result } = renderHook(() => useFavoriteCount())
     await waitFor(() => {
       expect(result.current.count).toBe(0)
@@ -13,9 +13,9 @@ describe('useFavoriteCount', () => {
   })
 
   it('Should return correct count when wishlist has items', async () => {
-    jest.spyOn(wishListService, 'get').mockReturnValueOnce({
-      total: 2,
-      items: [{ id: 1 }, { id: 2 }]
+    jest.spyOn(wishService, 'get').mockReturnValueOnce({
+      count: 2,
+      items: [1, 2]
     })
     const { result } = renderHook(() => useFavoriteCount())
     await waitFor(() => {

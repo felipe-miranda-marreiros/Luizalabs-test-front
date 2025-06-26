@@ -1,4 +1,4 @@
-import { FavoriteCount } from '@/features/WishList/ui/FavoriteCount'
+import { FavoriteCount } from '@/entities/Wish/ui/FavoriteCount'
 
 interface SidebarLinks {
   link: string

@@ -1,13 +1,21 @@
-export interface WishListProps {
-  total: number
-  items: {
-    id: number
-  }[]
+import { productAdapters } from '@/entities/Product/services/adapters/productAdapter'
+import type { Product } from '@/entities/Product'
+import type { WishesAPI } from '../models/wish'
+import { wishApi } from './wishApi'
+
+async function wishList(): Promise<Product[]> {
+  const response = await wishApi.wishList()
+  return productAdapters.productListAdapter(response)
 }
 
-const initialState: WishListProps = {
+async function wishes(): Promise<WishesAPI> {
+  const response = await wishApi.wishes()
+  return response
+}
+
+const initialState: WishesAPI = {
   items: [],
-  total: 0
+  count: 0
 }
 
 const WISH_LIST_KEY = 'WISH_LIST'
@@ -16,19 +24,19 @@ function isOnWishList(id: number): boolean {
   try {
     const wishList = localStorage.getItem(WISH_LIST_KEY)
     if (!wishList) return false
-    const parsedWishList: WishListProps = JSON.parse(wishList)
-    return parsedWishList.items.some((item) => item.id === id)
+    const parsedWishList: WishesAPI = JSON.parse(wishList)
+    return parsedWishList.items.some((productId) => productId === id)
   } catch (error) {
     console.log(error)
     return false
   }
 }
 
-function get(): WishListProps | null {
+function get(): WishesAPI | null {
   try {
     const wishList = localStorage.getItem(WISH_LIST_KEY)
     if (!wishList) return null
-    const parsedWishList: WishListProps = JSON.parse(wishList)
+    const parsedWishList: WishesAPI = JSON.parse(wishList)
     return parsedWishList
   } catch (error) {
     console.log(error)
@@ -47,9 +55,9 @@ function add(id: number): Promise<void> {
         resolve()
         return
       }
-      const parsedWishList: WishListProps = JSON.parse(wishList)
-      parsedWishList.items.push({ id })
-      parsedWishList.total = parsedWishList.items.length
+      const parsedWishList: WishesAPI = JSON.parse(wishList)
+      parsedWishList.items.push(id)
+      parsedWishList.count = parsedWishList.items.length
       localStorage.setItem(WISH_LIST_KEY, JSON.stringify(parsedWishList))
       resolve()
     } catch (error) {
@@ -62,11 +70,9 @@ function deleteById(id: number): void {
   try {
     const wishList = localStorage.getItem(WISH_LIST_KEY)
     if (!wishList) return
-    const parsedWishList: WishListProps = JSON.parse(wishList)
-    const updatedWishList = parsedWishList.items.filter(
-      (item) => item.id !== id
-    )
-    parsedWishList.total = updatedWishList.length
+    const parsedWishList: WishesAPI = JSON.parse(wishList)
+    const updatedWishList = parsedWishList.items.filter((item) => item !== id)
+    parsedWishList.count = updatedWishList.length
     parsedWishList.items = updatedWishList
     localStorage.setItem(WISH_LIST_KEY, JSON.stringify(parsedWishList))
   } catch (error) {
@@ -83,19 +89,22 @@ function removeList(): void {
   }
 }
 
-function setupListOnLocalStorage(): boolean {
-  const localData = localStorage.getItem(WISH_LIST_KEY)
-  if (!localData) {
-    localStorage.setItem(WISH_LIST_KEY, JSON.stringify(initialState))
+function setupListOnLocalStorage(wishes: WishesAPI): boolean {
+  try {
+    localStorage.setItem(WISH_LIST_KEY, JSON.stringify(wishes))
+    return true
+  } catch (error) {
+    console.error(error)
+    return false
   }
-  return true
 }
 
-export const wishListService = {
-  get,
+export const wishService = {
+  wishList,
+  wishes,
+  setupListOnLocalStorage,
+  removeList,
   isOnWishList,
   add,
-  deleteById,
-  removeList,
-  setupListOnLocalStorage
+  get
 }

@@ -5,7 +5,7 @@ import {
   ProductImage,
   type Product
 } from '@/entities/Product'
-import { Favorite } from '@/features/WishList'
+import { Favorite } from '@/entities/Wish/ui/Favorite'
 import { StarRating } from '@/shared/components/ui/start-rating'
 
 export function ProductItem(product: Product) {
