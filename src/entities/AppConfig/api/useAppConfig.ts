@@ -1,8 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
-import { type PropsWithChildren } from 'react'
 import { appService } from '../services/appConfigService'
 
-function useSetup() {
+export function useAppConfig() {
   const { isLoading } = useQuery({
     queryKey: ['SETUP_APP'],
     queryFn: async () => {
@@ -11,12 +10,5 @@ function useSetup() {
     },
     enabled: appService.getAppConfig().shouldFetch
   })
-
   return isLoading
-}
-
-export function Setup({ children }: PropsWithChildren) {
-  useSetup()
-
-  return children
 }

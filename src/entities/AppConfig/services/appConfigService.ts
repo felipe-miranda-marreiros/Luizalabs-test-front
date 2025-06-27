@@ -1,8 +1,8 @@
 import { wishService } from '../../Wish/services/wishService'
 
-const APP_KEY = 'APP_LOCAL'
+export const APP_KEY = 'APP_LOCAL'
 
-interface AppConfig {
+export interface AppConfig {
   shouldFetch: boolean
 }
 
