@@ -22,14 +22,15 @@ import {
 import { Link, useNavigate } from 'react-router'
 import { useLogin } from '@/entities/Login'
 import { useQueryClient } from '@tanstack/react-query'
+import { Error } from '@/shared/components/ui/error'
 
 export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<'div'>) {
-  const { mutate } = useLogin()
-  const navigate = useNavigate()
   const queryClient = useQueryClient()
+  const { mutate, error } = useLogin()
+  const navigate = useNavigate()
   const form = useForm<LoginFormSchema>({
     resolver: zodResolver(loginFormSchema),
     defaultValues: {
@@ -42,7 +43,8 @@ export function LoginForm({
     mutate(data, {
       onSuccess: () => {
         queryClient.resetQueries()
-        navigate('/dashboard/products')
+        queryClient.invalidateQueries()
+        navigate('/dashboard/products', { replace: true })
       }
     })
   }
@@ -57,6 +59,7 @@ export function LoginForm({
           </CardDescription>
         </CardHeader>
         <CardContent>
+          <Error className="mb-4" error={error} />
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
               <div className="flex flex-col gap-6">

@@ -10,7 +10,7 @@ import {
   QueryClientProvider,
   type QueryClientConfig
 } from '@tanstack/react-query'
-import { Setup } from '@/app/hooks/setup'
+import { Setup } from '@/entities/AppConfig/hooks/useAppSetup'
 
 function customRender<T = unknown>(
   component: React.ReactElement<T>,

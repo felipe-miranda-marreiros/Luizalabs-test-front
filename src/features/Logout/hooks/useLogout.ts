@@ -1,3 +1,4 @@
+import { appService } from '@/entities/AppConfig'
 import { wishService } from '@/entities/Wish/services/wishService'
 import { api } from '@/shared/api'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
@@ -10,6 +11,7 @@ export function useLogout() {
   const mutation = useMutation({
     mutationFn: async () => {
       await api.post('/api/auth/logout')
+      appService.resetAppConfig()
       wishService.removeList()
     },
     onSuccess: () => {

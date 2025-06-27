@@ -19,12 +19,16 @@ import {
   FormMessage
 } from '@/shared/components/ui/form'
 import { signUpFormSchema, type SignUpFormSchema } from './SignUpFormSchema'
-import { Link } from 'react-router'
+import { Link, useNavigate } from 'react-router'
+import { useSignUp } from '@/entities/SignUp'
+import { Error } from '@/shared/components/ui/error'
 
 export function SignUpForm({
   className,
   ...props
 }: React.ComponentProps<'div'>) {
+  const { mutate, error } = useSignUp()
+  const navigate = useNavigate()
   const form = useForm<SignUpFormSchema>({
     resolver: zodResolver(signUpFormSchema),
     defaultValues: {
@@ -36,7 +40,19 @@ export function SignUpForm({
   })
 
   function onSubmit(data: SignUpFormSchema) {
-    console.log(data)
+    mutate(
+      {
+        email: data.email,
+        first_name: data.firstName,
+        last_name: data.lastName,
+        password: data.password
+      },
+      {
+        onSuccess: () => {
+          navigate('/dashboard/products')
+        }
+      }
+    )
   }
 
   return (
@@ -49,6 +65,7 @@ export function SignUpForm({
           </CardDescription>
         </CardHeader>
         <CardContent>
+          <Error className="mb-4" error={error} />
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
               <div className="flex flex-col gap-6">
@@ -93,7 +110,7 @@ export function SignUpForm({
                 />
                 <FormField
                   control={form.control}
-                  name="email"
+                  name="password"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Senha</FormLabel>

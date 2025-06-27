@@ -1,5 +1,4 @@
 import { BrowserRouter } from 'react-router'
-import { Setup } from '../hooks/setup'
 import { Routes } from '../routes/routes'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
@@ -17,9 +16,7 @@ export function Providers() {
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
-        <Setup>
-          <Routes />
-        </Setup>
+        <Routes />
       </BrowserRouter>
     </QueryClientProvider>
   )
