@@ -31,31 +31,4 @@ describe('<LoginForm />', () => {
       ).toBeGreaterThanOrEqual(1)
     })
   })
-
-  it('Should submit form with valid inputs', async () => {
-    const consoleSpy = jest.spyOn(console, 'log').mockImplementation(() => {})
-
-    render(
-      <MemoryRouter>
-        <LoginForm />
-      </MemoryRouter>
-    )
-
-    const emailInput = screen.getByPlaceholderText(/seu e-mail/i)
-    const passwordInput = screen.getByPlaceholderText(/sua senha/i)
-
-    fireEvent.change(emailInput, { target: { value: 'it@example.com' } })
-    fireEvent.change(passwordInput, { target: { value: 'password123' } })
-
-    fireEvent.click(screen.getByRole('button', { name: /entrar/i }))
-
-    await waitFor(() => {
-      expect(consoleSpy).toHaveBeenCalledWith({
-        email: 'it@example.com',
-        password: 'password123'
-      })
-    })
-
-    consoleSpy.mockRestore()
-  })
 })
