@@ -29,7 +29,7 @@ export function LoginForm({
   ...props
 }: React.ComponentProps<'div'>) {
   const queryClient = useQueryClient()
-  const { mutate, error } = useLogin()
+  const { mutate, error, isPending } = useLogin()
   const navigate = useNavigate()
   const form = useForm<LoginFormSchema>({
     resolver: zodResolver(loginFormSchema),
@@ -90,7 +90,11 @@ export function LoginForm({
                   )}
                 />
                 <div className="flex flex-col gap-3">
-                  <Button type="submit" className="w-full">
+                  <Button
+                    isLoading={isPending}
+                    type="submit"
+                    className="w-full"
+                  >
                     Entrar
                   </Button>
                 </div>

@@ -22,13 +22,15 @@ import { signUpFormSchema, type SignUpFormSchema } from './SignUpFormSchema'
 import { Link, useNavigate } from 'react-router'
 import { useSignUp } from '@/entities/SignUp'
 import { Error } from '@/shared/components/ui/error'
+import { useQueryClient } from '@tanstack/react-query'
 
 export function SignUpForm({
   className,
   ...props
 }: React.ComponentProps<'div'>) {
-  const { mutate, error } = useSignUp()
+  const { mutate, error, isPending } = useSignUp()
   const navigate = useNavigate()
+  const queryClient = useQueryClient()
   const form = useForm<SignUpFormSchema>({
     resolver: zodResolver(signUpFormSchema),
     defaultValues: {
@@ -49,7 +51,9 @@ export function SignUpForm({
       },
       {
         onSuccess: () => {
-          navigate('/dashboard/products')
+          queryClient.resetQueries()
+          queryClient.invalidateQueries()
+          navigate('/dashboard/products', { replace: true })
         }
       }
     )
@@ -122,7 +126,11 @@ export function SignUpForm({
                   )}
                 />
                 <div className="flex flex-col gap-3">
-                  <Button type="submit" className="w-full">
+                  <Button
+                    isLoading={isPending}
+                    type="submit"
+                    className="w-full"
+                  >
                     Cadastrar
                   </Button>
                 </div>

@@ -5,7 +5,7 @@ export function ProductContainer({ children }: PropsWithChildren) {
   return (
     <article
       data-testid="product-id"
-      className="flex flex-col border bg-gray-50 text-black border-gray-50/10 rounded-2xl p-3.5"
+      className="flex flex-col border border-gray-50/10 rounded-2xl p-3.5"
     >
       {children}
     </article>

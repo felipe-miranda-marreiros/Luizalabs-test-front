@@ -13,6 +13,11 @@ async function wishes(): Promise<WishesAPI> {
   return response
 }
 
+async function removeWishList(): Promise<void> {
+  await wishApi.removeWishList()
+  removeList()
+}
+
 const initialState: WishesAPI = {
   items: [],
   count: 0
@@ -106,5 +111,6 @@ export const wishService = {
   removeList,
   isOnWishList,
   add,
-  get
+  get,
+  removeWishList
 }

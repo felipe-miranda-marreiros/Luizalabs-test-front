@@ -6,7 +6,9 @@ export function WishListPage() {
       <h2 className="my-7 pb-3.5 text-4xl border-b border-b-gray-50/10">
         Favoritos
       </h2>
-      <WishList />
+      <div>
+        <WishList />
+      </div>
     </div>
   )
 }

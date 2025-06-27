@@ -1,5 +1,5 @@
 import { cn } from '@/shared/lib'
-import { Heart } from 'lucide-react'
+import { Heart, Loader2Icon } from 'lucide-react'
 import { useToggleFavorite } from '../hooks/useToggleFavorite'
 
 interface FavoriteProps {
@@ -7,10 +7,14 @@ interface FavoriteProps {
 }
 
 export function Favorite({ id }: FavoriteProps) {
-  const { isFavorite, onToggle } = useToggleFavorite(id)
+  const { isFavorite, onToggle, isPending } = useToggleFavorite(id)
 
   function onClick() {
     onToggle()
+  }
+
+  if (isPending) {
+    return <Loader2Icon className="animate-spin" />
   }
 
   return (
