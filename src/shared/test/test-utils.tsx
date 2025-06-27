@@ -10,7 +10,7 @@ import {
   QueryClientProvider,
   type QueryClientConfig
 } from '@tanstack/react-query'
-import { Setup } from '@/entities/AppConfig/hooks/useAppSetup'
+import { Toaster } from 'sonner'
 
 function customRender<T = unknown>(
   component: React.ReactElement<T>,
@@ -29,7 +29,7 @@ function customRenderHook<Result, Props>(
   })
 }
 
-const queryClientConfig: QueryClientConfig = {
+export const queryClientTestConfig: QueryClientConfig = {
   defaultOptions: {
     queries: {
       retry: false,
@@ -43,11 +43,12 @@ const queryClientConfig: QueryClientConfig = {
 }
 
 function AllProviders() {
-  const testQueryClient = new QueryClient(queryClientConfig)
+  const testQueryClient = new QueryClient(queryClientTestConfig)
 
   return ({ children }: PropsWithChildren) => (
     <QueryClientProvider client={testQueryClient}>
-      <Setup>{children}</Setup>
+      {children}
+      <Toaster />
     </QueryClientProvider>
   )
 }
