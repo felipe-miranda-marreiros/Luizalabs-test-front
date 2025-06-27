@@ -11,7 +11,7 @@ export function Routes() {
       <Route path="/" element={<LoginPage />} />
       <Route path="/sign-up" element={<SignUpPage />} />
       <Route path="/dashboard" element={<Dashboard />}>
-        <Route index path="products" element={<ProductsPage />} />
+        <Route path="products" element={<ProductsPage />} />
         <Route path="wish-list" element={<WishListPage />} />
       </Route>
     </RRoutes>
