@@ -46,6 +46,7 @@ export function useToggleFavorite(id: string) {
   return {
     isFavorite,
     onToggle: mutation.mutate,
-    isPending: mutation.isPending
+    isPending: mutation.isPending,
+    queryClient: queryClient
   }
 }
