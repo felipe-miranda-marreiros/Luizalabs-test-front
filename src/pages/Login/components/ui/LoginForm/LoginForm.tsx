@@ -40,13 +40,19 @@ export function LoginForm({
   })
 
   function onSubmit(data: LoginFormSchema) {
-    mutate(data, {
-      onSuccess: () => {
-        queryClient.resetQueries()
-        queryClient.invalidateQueries()
-        navigate('/dashboard/products', { replace: true })
+    mutate(
+      {
+        email: data.email,
+        password: data.password
+      },
+      {
+        onSuccess: () => {
+          queryClient.resetQueries()
+          queryClient.invalidateQueries()
+          navigate('/dashboard/products', { replace: true })
+        }
       }
-    })
+    )
   }
 
   return (
