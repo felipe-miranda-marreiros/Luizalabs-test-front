@@ -7,7 +7,13 @@ export function WishList() {
   const { data, isLoading } = useWishList()
 
   if (isLoading) {
-    return <Loader2Icon size={40} className="animate-spin mx-auto" />
+    return (
+      <Loader2Icon
+        data-testid="spinner"
+        size={40}
+        className="animate-spin mx-auto"
+      />
+    )
   }
 
   if (!data || data.length === 0) {
