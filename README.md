@@ -4,7 +4,9 @@
   - [Sobre este repositório](#sobre-este-repositório)
     - [Requisitos](#requisitos)
     - [Guia de instalação](#guia-de-instalação)
+    - [Aplicações](#aplicações)
   - [Escolha de tecnologias e Arquitetura](#escolha-de-tecnologias-e-arquitetura)
+  - [Documentação Back-End](#documentação-back-end)
   - [Dependências](#dependências)
     - [Qualidade](#qualidade)
     - [Front-End](#front-end)
@@ -64,11 +66,29 @@ Verifica se o submodulo test-back está presente e atualizado com git submodule 
 Instala as dependencias do test-back
 ```
 
+### Aplicações
+
+No final da instalação, teremos:
+
+| Applicação     | URL                                                       |
+| -------------- | --------------------------------------------------------- |
+| `front-end`    | [http://localhost:5173/](http://localhost:5173/)          |
+| `app`          | [http://localhost:3000/](http://localhost:3000/)          |
+| `pgAdmin 4`    | [http://localhost:5050/](http://localhost:5050/)          |
+| `postgreSQL`   | [http://localhost:5432/](http://localhost:5432/)          |
+| `swagger`      | [http://localhost:3000/docs/](http://localhost:3000/docs) |
+| `redisinsight` | [http://localhost:5540/](http://localhost:5540/)          |
+| `redis`        | [http://localhost:6379/](http://localhost:6379/)          |
+
 ## Escolha de tecnologias e Arquitetura
 
 - `Front`: utilizando como métodologia Feature Slice Design com React.js e Vite. Para testes: Jest, MSW e React Testing Library.
 
 - `Back`: utilizando Arquitetura por Camadas com TypeScript e Express.js. Para o banco de dados, escolhi PostgreSQL. Para cacheamento, Redis com `Cache Aside Pattern` e Mailtrap para envio de SMTP. Swagger para documentação baseado em contratos de domínio. Para testes, Supertest, Jest e TestContainers.
+
+## Documentação Back-End
+
+**[Para documentação do Back-End](https://github.com/felipe-miranda-marreiros/Luizalabs-test-back).**
 
 ## Dependências
 
