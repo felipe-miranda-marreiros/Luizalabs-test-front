@@ -16,11 +16,14 @@
       - [Principais](#principais-1)
       - [Teste](#teste-1)
   - [Feature Slice Design](#feature-slice-design)
+    - [Pontos positivos](#pontos-positivos)
+    - [Pontos negativos](#pontos-negativos)
     - [Navegação](#navegação)
     - [Anatomia de um Slice](#anatomia-de-um-slice)
   - [Testes unitários e integração](#testes-unitários-e-integração)
   - [Orientado a modelos](#orientado-a-modelos)
   - [Desenvolvimento sem Back-End](#desenvolvimento-sem-back-end)
+  - [Cache e performance](#cache-e-performance)
   - [Referencias](#referencias)
 
 ## Sobre este repositório
@@ -159,6 +162,18 @@ Este projeto utiliza a metodologia baseada em FSD, o que significa que separamos
 
 Esses recursos são autocontidos e desvinculados uns dos outros. Por exemplo, o Slice(A) não pode se comunicar diretamente com Slice(B). É uma regra que podemos criar para proteger as regras de negócios, facilitando a pesquisa, a manutenção e os testes dos desenvolvedores.
 
+### Pontos positivos
+
+- React é uma biblioteca e por isso depende dos desenvolvedores alinharem uma arquitetura ou metodologia para criar seus projetos. FSD permite criar regras que podem ser seguidas por todas as pessoas envolvidas no projeto. Essas regras podem ser internalizadas em código por meio de linters como Eslint e pela cultura de testes e code review.
+- Diferente de outras metodologias também relacionadas com Feature/Slice, FSD permite ter menos carga cognitiva e mais coesão de projeto. Componentes são baseados em suas entidades e não em uma pasta qualquer.
+- É fácil de navegar, testar e fazer manutenção.
+- Pode ser automatizado por CLI ou AI.
+
+### Pontos negativos
+
+- Curva de aprendizado mediana. Desenvolvedor precisa entender as regras e as diferenças entre Entities e Features. Constuma ser melhor entendido com alinhamento entre UX/UI e desenvolvedors back-end.
+- Arquitetura MVVM pode ser uma alternativa melhor, pois constuma ter ainda mais coesão.
+
 ### Navegação
 
 O projeto `Front-End` está estruturado desta forma:
@@ -246,6 +261,27 @@ export const productAdapters = {
   productListAdapter
 }
 ```
+
+## Cache e performance
+
+Este projeto utiliza `React Query` com `Axios` para fazer requisições e gerenciar cache. Eu também utilizo não só para chamadas de API, mas também para outras regras que utilizam `useEffect`.
+
+```ts
+export function useAppConfig() {
+  const { isLoading } = useQuery({
+    queryKey: ['SETUP_APP'],
+    queryFn: async () => {
+      await appService.setupAppConfig()
+      return true
+    },
+    enabled: appService.getAppConfig().shouldFetch
+  })
+  return isLoading
+}
+```
+
+O hook `useAppConfig` interage com o `LocalStorage` e podemos invalidar o cache em caso de logout. Isso permite realizar renderizações mais consistentes e menos acopladas,
+pois precisamos apenas da chave do cache para chama-lo novamente com novos dados.
 
 ## Referencias
 
