@@ -19,6 +19,7 @@
   - [Testes unitários e integração](#testes-unitários-e-integração)
   - [Orientado a modelos](#orientado-a-modelos)
   - [Desenvolvimento sem Back-End](#desenvolvimento-sem-back-end)
+  - [Referencias](#referencias)
 
 ## Sobre este repositório
 
@@ -225,3 +226,7 @@ export const productAdapters = {
   productListAdapter
 }
 ```
+
+## Referencias
+
+- [Feature-Slice Design](https://feature-sliced.design/)
