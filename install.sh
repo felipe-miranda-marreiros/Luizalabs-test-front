@@ -20,4 +20,10 @@ echo "📦 Instalando dependências do projeto test-back..."
 npm install
 
 echo ""
+echo "🐳 Executando o script docker-install..."
+bash ./docker-install
+
+cd ..
+npm run dev
+echo ""
 echo "✅ Tudo pronto! test-front e test-back estão com as dependências instaladas."
