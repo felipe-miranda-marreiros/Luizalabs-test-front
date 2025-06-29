@@ -16,9 +16,6 @@ echo ""
 echo "📁 Entrando na pasta do test-back..."
 cd Luizalabs-test-back
 
-echo "📦 Instalando dependências do projeto test-back..."
-npm install
-
 echo ""
 echo "🐳 Executando o script docker-install..."
 bash ./docker-install
