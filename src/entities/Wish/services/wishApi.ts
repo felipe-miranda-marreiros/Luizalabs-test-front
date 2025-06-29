@@ -3,17 +3,17 @@ import type { WishesAPI } from '../models/wish'
 import { api } from '@/shared/api'
 
 async function wishList(): Promise<ProductAPI[]> {
-  const response = await api.get<ProductAPI[]>('/api/wish')
+  const response = await api.get<ProductAPI[]>('/api/wish/products')
   return response.data
 }
 
 async function wishes(): Promise<WishesAPI> {
-  const response = await api.get<WishesAPI>('/api/wish/list')
+  const response = await api.get<WishesAPI>('/api/wish/current')
   return response.data
 }
 
 async function addOrRemove(productId: number): Promise<WishesAPI> {
-  const response = await api.post<WishesAPI>(`/api/wish/${productId}`)
+  const response = await api.post<WishesAPI>(`/api/wish/product/${productId}`)
   return response.data
 }
 

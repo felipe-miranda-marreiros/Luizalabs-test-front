@@ -114,7 +114,7 @@ No final da instalação, teremos:
 
 ### Front-End
 
-Ao clicar no ícone de "coração" em um produto, ele será adiciona aos favoritos, tanto no back-end como também no `localStorage`.
+Você começará na rota de [Produtos](http://localhost:5173/). Ao clicar no ícone de "coração" em um produto, ele será adiciona aos favoritos, tanto no back-end como também no `localStorage`.
 
 #### Rotas:
 
@@ -139,15 +139,16 @@ Em `./Luizalabs-test-back`. Por meio do `Swagger` com `http://localhost:3000/doc
 
 #### Rotas:
 
-| Rotas                   | Descrição                                          |
-| ----------------------- | -------------------------------------------------- |
-| /api/auth/sign-in       | (POST) Faz login com `email` e `senha`             |
-| /api/auth/sign-up       | (POST) Cria uma nova conta                         |
-| /api/products           | (GET) Retorna uma lista de produtos                |
-| /api/users/current-user | (GET) Retorna o usuário logado                     |
-| /api/wish/:product_id   | (POST) Adiciona/remove um produto em favoritos     |
-| /api/wish/              | (DELETE) Remove a listagem de um usuário           |
-| /api/wish/list          | (GET) Retorna a quantidade de produtos favoritados |
+| Rotas                         | Descrição                                          |
+| ----------------------------- | -------------------------------------------------- |
+| /api/auth/sign-in             | (POST) Faz login com `email` e `senha`             |
+| /api/auth/sign-up             | (POST) Cria uma nova conta                         |
+| /api/products                 | (GET) Retorna uma lista de produtos                |
+| /api/users/current-user       | (GET) Retorna o usuário logado                     |
+| /api/wish/product/:product_id | (POST) Adiciona/remove um produto em favoritos     |
+| /api/wish                     | (DELETE) Remove a listagem de um usuário           |
+| /api/wish/current             | (GET) Retorna a quantidade de produtos favoritados |
+| /api/wish/products            | (GET) Retorna uma listagem de produtos             |
 
 #### Comandos:
 

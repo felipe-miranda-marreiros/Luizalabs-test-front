@@ -7,17 +7,17 @@ const WISH_PATH = '/api/wish'
 export const WISH_FULL_URL = `${BASE_URL}${WISH_PATH}`
 
 export const wishHandlers = [
-  http.get(WISH_FULL_URL, () => {
+  http.get(WISH_FULL_URL + '/products', () => {
     return HttpResponse.json(wishMocks.wishListMock, { status: 200 })
   }),
-  http.get(WISH_FULL_URL + '/list', () => {
+  http.get(WISH_FULL_URL + '/current', () => {
     return HttpResponse.json(wishMocks.wishMock, { status: 200 })
   }),
   http.delete(WISH_FULL_URL, () => {
     wishMocks.wishListMock = []
     return HttpResponse.json(null, { status: 200 })
   }),
-  http.post(WISH_FULL_URL + '/:product_id', ({ params }) => {
+  http.post(WISH_FULL_URL + '/product/:product_id', ({ params }) => {
     const { product_id } = params
     const id = parseInt(product_id as string)
     const productExists = wishMocks.wishMock.items.includes(id)

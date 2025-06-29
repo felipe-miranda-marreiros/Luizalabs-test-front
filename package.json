@@ -8,7 +8,9 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "test": "jest"
+    "test": "jest --passWithNoTests --runInBand --detectOpenHandles",
+    "test:integration": "npm test -- -c jest.integration.config.ts",
+    "test:unit": "npm test -- -c jest.unit.config.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.1.1",

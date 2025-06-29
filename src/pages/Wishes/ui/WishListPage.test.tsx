@@ -20,7 +20,7 @@ describe('<WishListPage />', () => {
 
   test('Should display an empty message if wish list is empty', async () => {
     server.use(
-      http.get(WISH_FULL_URL, () => {
+      http.get(WISH_FULL_URL + '/products', () => {
         return HttpResponse.json([], { status: 200 })
       })
     )
