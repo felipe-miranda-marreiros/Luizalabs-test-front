@@ -1,12 +1,13 @@
 import { useQuery } from '@tanstack/react-query'
 import { wishService } from '../services/wishService'
 import { useRef } from 'react'
+import { QueryKeys } from '@/shared/api'
 
 export function useFavoriteCount() {
   const attempts = useRef(0)
 
   const { data } = useQuery({
-    queryKey: ['FAVORITE_COUNT'],
+    queryKey: [QueryKeys.FAVORITE_COUNT],
     refetchInterval: (lastData) => {
       if (lastData.state.data === 0 && attempts.current < 3) {
         attempts.current++

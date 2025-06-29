@@ -1,4 +1,5 @@
 import { useRemoveWishList } from '@/entities/Wish'
+import { QueryKeys } from '@/shared/api'
 import { Button } from '@/shared/components/ui/button'
 import {
   Dialog,
@@ -22,10 +23,10 @@ export function RemoveWishList() {
     mutate(undefined, {
       onSuccess: async () => {
         await queryClient.invalidateQueries({
-          queryKey: ['FAVORITE_COUNT']
+          queryKey: [QueryKeys.FAVORITE_COUNT]
         })
         await queryClient.invalidateQueries({
-          queryKey: ['WISH_LIST'],
+          queryKey: [QueryKeys.WISH_LIST],
           type: 'all'
         })
         setIsOpen(false)

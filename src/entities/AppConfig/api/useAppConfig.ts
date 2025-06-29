@@ -1,9 +1,10 @@
 import { useQuery } from '@tanstack/react-query'
 import { appService } from '../services/appConfigService'
+import { QueryKeys } from '@/shared/api'
 
 export function useAppConfig() {
   const { isLoading } = useQuery({
-    queryKey: ['SETUP_APP'],
+    queryKey: [QueryKeys.SETUP_APP],
     queryFn: async () => {
       await appService.setupAppConfig()
       return true

@@ -5,6 +5,7 @@ import { wishApi } from '../services/wishApi'
 import { useNavigate } from 'react-router'
 import { toast } from 'sonner'
 import { useState } from 'react'
+import { QueryKeys } from '@/shared/api'
 
 export function useToggleFavorite(id: string) {
   const [isFavorite, setIsFavorite] = useState(() =>
@@ -21,13 +22,13 @@ export function useToggleFavorite(id: string) {
     onSuccess: async () => {
       setIsFavorite((prevState) => !prevState)
       await queryClient.invalidateQueries({
-        queryKey: ['SETUP_APP']
+        queryKey: [QueryKeys.SETUP_APP]
       })
       await queryClient.invalidateQueries({
-        queryKey: ['FAVORITE_COUNT']
+        queryKey: [QueryKeys.FAVORITE_COUNT]
       })
       await queryClient.invalidateQueries({
-        queryKey: ['WISH_LIST'],
+        queryKey: [QueryKeys.WISH_LIST],
         type: 'all'
       })
     },

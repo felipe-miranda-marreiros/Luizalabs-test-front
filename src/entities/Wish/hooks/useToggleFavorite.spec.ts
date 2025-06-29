@@ -4,6 +4,7 @@ import { wishService } from '../services/wishService'
 import { wishApi } from '../services/wishApi'
 import { act, waitFor } from '@testing-library/react'
 import * as toast from 'sonner'
+import { QueryKeys } from '@/shared/api'
 
 const navigateMock = jest.fn()
 
@@ -65,12 +66,14 @@ describe('useToggleFavorite', () => {
     })
 
     await waitFor(() => {
-      expect(invalidateSpy).toHaveBeenCalledWith({ queryKey: ['SETUP_APP'] })
       expect(invalidateSpy).toHaveBeenCalledWith({
-        queryKey: ['FAVORITE_COUNT']
+        queryKey: [QueryKeys.SETUP_APP]
       })
       expect(invalidateSpy).toHaveBeenCalledWith({
-        queryKey: ['WISH_LIST'],
+        queryKey: [QueryKeys.FAVORITE_COUNT]
+      })
+      expect(invalidateSpy).toHaveBeenCalledWith({
+        queryKey: [QueryKeys.WISH_LIST],
         type: 'all'
       })
     })
