@@ -2,14 +2,21 @@
   - [Requisitos](#requisitos)
   - [Guia de instalação](#guia-de-instalação)
   - [Aplicações](#aplicações)
+- [Como testar as aplicações](#como-testar-as-aplicações)
+  - [Front-End](#front-end)
+    - [Rotas:](#rotas)
+    - [Comandos:](#comandos)
+  - [Back-End](#back-end)
+    - [Rotas:](#rotas-1)
+    - [Comandos:](#comandos-1)
 - [Escolha de tecnologias e Arquitetura](#escolha-de-tecnologias-e-arquitetura)
 - [Documentação Back-End](#documentação-back-end)
 - [Dependências](#dependências)
   - [Qualidade](#qualidade)
-  - [Front-End](#front-end)
+  - [Front-End](#front-end-1)
     - [Principais](#principais)
     - [Teste](#teste)
-  - [Back-End](#back-end)
+  - [Back-End](#back-end-1)
     - [Principais](#principais-1)
     - [Teste](#teste-1)
 - [Feature Slice Design](#feature-slice-design)
@@ -42,29 +49,52 @@ Este comando clonará dois repositórios `test-front` e `test-back`, sendo o pri
 
 ### Guia de instalação
 
-Para iniciar o projeto, siga o seguinte comando no terminal:
+Para iniciar o projeto, siga o seguinte comando no `terminal`, na raiz do projeto `test-front`:
 
 - `MACOS/LINUX`:
 
-Dê permissão para iniciar o script `install.sh`
+Dê permissão para iniciar os scripts `install` e `docker-install`
 
 ```bash
 chmod +x install.sh
 ```
 
-- `Script`:
+```bash
+chmod +x ./Luizalabs-test-back/docker-install
+```
+
+Inicie o script `install`:
 
 ```bash
 make install
 ```
 
-O que deve ser feito:
+- `WINDOWS`:
 
+É necessário ter `chocolatey` instalado. Para instalar, abra o `PowerShell`
+em modo administrador e execute os comandos:
+
+```bash
+Set-ExecutionPolicy Bypass -Scope Process
 ```
-Instala as dependencias com npm install
-Verifica se o submodulo test-back está presente e atualizado com git submodule update --init --recursive
-Instala as dependencias do test-back
+
+Instale o `chocolatey`:
+
+```bash
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 ```
+
+Inicie o script `install`:
+
+```bash
+make install
+```
+
+O que deve ser feito após a finalização do script:
+
+- Instalar as dependencias com `npm install`
+- Instalar as dependencias do `test-back` com `npm install`
+- Iniciar os containers necessários com `docker`
 
 ### Aplicações
 
@@ -80,15 +110,62 @@ No final da instalação, teremos:
 | `redisinsight` | [http://localhost:5540/](http://localhost:5540/)          |
 | `redis`        | [http://localhost:6379/](http://localhost:6379/)          |
 
+## Como testar as aplicações
+
+### Front-End
+
+Ao clicar no ícone de "coração" em um produto, ele será adiciona aos favoritos, tanto no back-end como também no `localStorage`.
+
+#### Rotas:
+
+| Rotas                                        | Caminho                         |
+| -------------------------------------------- | ------------------------------- |
+| [Login](http://localhost:5173/login)         | http://localhost:5173/login     |
+| [Cadastro](http://localhost:5173/sign-up)    | http://localhost:5173/sign-up   |
+| [Produtos](http://localhost:5173/)           | http://localhost:5173/          |
+| [Favoritos](http://localhost:5173/wish-list) | http://localhost:5173/wish-list |
+
+#### Comandos:
+
+| Rotas                    | Descrição                    |
+| ------------------------ | ---------------------------- |
+| npm run dev              | Inicia a aplicação           |
+| npm run test:unit        | Executa testes unitários     |
+| npm run test:integration | Executa testes de integração |
+
+### Back-End
+
+Em `./Luizalabs-test-back`. Por meio do `Swagger` com `http://localhost:3000/docs/`
+
+#### Rotas:
+
+| Rotas                   | Descrição                                          |
+| ----------------------- | -------------------------------------------------- |
+| /api/auth/sign-in       | (POST) Faz login com `email` e `senha`             |
+| /api/auth/sign-up       | (POST) Cria uma nova conta                         |
+| /api/products           | (GET) Retorna uma lista de produtos                |
+| /api/users/current-user | (GET) Retorna o usuário logado                     |
+| /api/wish/:product_id   | (POST) Adiciona/remove um produto em favoritos     |
+| /api/wish/              | (DELETE) Remove a listagem de um usuário           |
+| /api/wish/list          | (GET) Retorna a quantidade de produtos favoritados |
+
+#### Comandos:
+
+| Rotas                                 | Descrição                    |
+| ------------------------------------- | ---------------------------- |
+| npm run start:dev                     | Inicia a aplicação           |
+| npm run test:unit                     | Executa testes unitários     |
+| npm run test:integration (com Docker) | Executa testes de integração |
+
 ## Escolha de tecnologias e Arquitetura
 
-- `Front`: utilizando como métodologia Feature Slice Design com React.js e Vite. Para testes: Jest, MSW e React Testing Library.
+- `Front`: utilizando como métodologia `Feature Slice Design` com React.js e Vite. Para testes: Jest, MSW e React Testing Library.
 
-- `Back`: utilizando Arquitetura por Camadas com TypeScript e Express.js. Para o banco de dados, escolhi PostgreSQL. Para cacheamento, Redis com `Cache Aside Pattern` e Mailtrap para envio de SMTP. Swagger para documentação baseado em contratos de domínio. Para testes, Supertest, Jest e TestContainers.
+- `Back`: utilizando `Arquitetura por Camadas` com TypeScript e Express.js. Para o banco de dados, escolhi PostgreSQL. Para cacheamento, Redis com `Cache Aside Pattern` e Mailtrap para envio de SMTP. Swagger para documentação baseado em contratos de domínio. Para testes, Supertest, Jest e TestContainers.
 
 ## Documentação Back-End
 
-**[Para documentação do Back-End](https://github.com/felipe-miranda-marreiros/Luizalabs-test-back).**
+**[Acesse aqui](https://github.com/felipe-miranda-marreiros/Luizalabs-test-back).**
 
 ## Dependências
 
