@@ -8,8 +8,8 @@ export function FavoriteCount() {
   }
 
   return (
-    <div className="bg-red-600 w-[25px] h-[25px] flex items-center justify-center rounded-full">
-      <p className="text-sm">{count}</p>
+    <div className="flex items-center justify-center rounded-full">
+      <p className="text-[12px] font-bold text-white">{count}</p>
     </div>
   )
 }

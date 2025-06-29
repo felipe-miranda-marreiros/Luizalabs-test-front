@@ -7,7 +7,6 @@ import { MemoryRouter } from 'react-router'
 describe('<ProductsPage />', () => {
   beforeAll(() => {
     server.listen()
-    jest.useFakeTimers()
   })
 
   afterEach(() => {
@@ -16,13 +15,11 @@ describe('<ProductsPage />', () => {
 
   afterAll(() => {
     server.close()
-    jest.resetAllMocks()
-    jest.useRealTimers()
   })
 
   test('Should render ProductsPage with ProductList when list is not empty', async () => {
     render(
-      <MemoryRouter initialEntries={['/dashboard/products']}>
+      <MemoryRouter initialEntries={['/']}>
         <Routes />
       </MemoryRouter>
     )

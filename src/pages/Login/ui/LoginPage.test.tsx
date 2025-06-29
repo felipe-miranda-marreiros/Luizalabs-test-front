@@ -19,7 +19,7 @@ describe('<LoginPage />', () => {
 
   test('Should navigate to sign-up page when clicking "Fazer cadastro"', async () => {
     render(
-      <MemoryRouter initialEntries={['/']}>
+      <MemoryRouter initialEntries={['/login']}>
         <Routes />
       </MemoryRouter>
     )
@@ -33,7 +33,7 @@ describe('<LoginPage />', () => {
   })
   test('Should navigate to products page on login success', async () => {
     render(
-      <MemoryRouter initialEntries={['/']}>
+      <MemoryRouter initialEntries={['/login']}>
         <Routes />
       </MemoryRouter>
     )

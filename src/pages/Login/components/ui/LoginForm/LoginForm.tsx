@@ -23,11 +23,14 @@ import { Link, useNavigate } from 'react-router'
 import { useLogin } from '@/entities/Login'
 import { useQueryClient } from '@tanstack/react-query'
 import { Error } from '@/shared/components/ui/error'
+import { EyeIcon, EyeOffIcon } from 'lucide-react'
+import { useState } from 'react'
 
 export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<'div'>) {
+  const [isShow, setisShow] = useState(false)
   const queryClient = useQueryClient()
   const { mutate, error, isPending } = useLogin()
   const navigate = useNavigate()
@@ -49,7 +52,7 @@ export function LoginForm({
         onSuccess: () => {
           queryClient.resetQueries()
           queryClient.invalidateQueries()
-          navigate('/dashboard/products', { replace: true })
+          navigate('/', { replace: true })
         }
       }
     )
@@ -76,7 +79,11 @@ export function LoginForm({
                     <FormItem>
                       <FormLabel>E-mail</FormLabel>
                       <FormControl>
-                        <Input placeholder="Seu e-mail..." {...field} />
+                        <Input
+                          autoComplete="email"
+                          placeholder="Seu e-mail..."
+                          {...field}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -89,7 +96,28 @@ export function LoginForm({
                     <FormItem>
                       <FormLabel>Senha</FormLabel>
                       <FormControl>
-                        <Input placeholder="Sua senha..." {...field} />
+                        <Input
+                          autoComplete="current-password"
+                          inputMode="text"
+                          type={isShow ? 'text' : 'password'}
+                          IconRight={
+                            isShow ? (
+                              <EyeIcon
+                                onClick={() =>
+                                  setisShow((prevState) => !prevState)
+                                }
+                              />
+                            ) : (
+                              <EyeOffIcon
+                                onClick={() =>
+                                  setisShow((prevState) => !prevState)
+                                }
+                              />
+                            )
+                          }
+                          placeholder="Sua senha..."
+                          {...field}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>

@@ -93,7 +93,7 @@ describe('useToggleFavorite', () => {
 
     await waitFor(() => {
       expect(toastApy).toHaveBeenCalledWith('Faça login para continuar')
-      expect(navigateMock).toHaveBeenCalledWith('/')
+      expect(navigateMock).toHaveBeenCalledWith('/login')
     })
   })
 

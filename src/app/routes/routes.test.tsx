@@ -4,12 +4,13 @@ import { MemoryRouter } from 'react-router'
 import { Routes } from './routes'
 
 describe('<Routes />', () => {
-  test('Should render Login page by default', async () => {
+  test('Should render Products page by default', async () => {
     render(
       <MemoryRouter>
         <Routes />
       </MemoryRouter>
     )
-    expect(await screen.findByText(/Faça login em sua conta/i)).toBeDefined()
+
+    expect(await screen.findByTestId('product-page')).toBeInTheDocument()
   })
 })

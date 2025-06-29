@@ -3,12 +3,12 @@ import { sidebarLinks } from './links'
 
 export function DashboardSidebar() {
   return (
-    <aside className="p-4 w-[200px] border-r border-r-gray-50/10">
+    <aside className="p-4 border-r border-r-gray-50/10">
       <nav>
-        <ul>
+        <ul className="space-y-5 relative">
           {sidebarLinks.map(({ label, link, Component }) => {
             return (
-              <li key={label} className="flex justify-between text-xl">
+              <li key={label} className="cursor-pointer text-xl">
                 <NavLink
                   className={({ isActive }) =>
                     isActive
@@ -19,9 +19,8 @@ export function DashboardSidebar() {
                     pathname: link
                   }}
                 >
-                  {label}
+                  {Component && Component}
                 </NavLink>
-                {Component && Component}
               </li>
             )
           })}

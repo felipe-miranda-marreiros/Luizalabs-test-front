@@ -4,8 +4,11 @@ import { currencyUtil } from '@/shared/utils'
 
 export function WishItem(props: Product) {
   return (
-    <article className="border border-gray-50/5 p-4">
-      <div className="flex gap-4 items-center">
+    <article className="flex flex-col border border-gray-50/5 p-4">
+      <div className="self-end">
+        <Favorite id={props.id} />
+      </div>
+      <div className="flex flex-col lg:flex-row gap-4 items-center">
         <div className="flex-[0.5]">
           <img
             className="flex-1 h-[130px] w-[130px] rounded-2xl"
@@ -19,9 +22,6 @@ export function WishItem(props: Product) {
             {currencyUtil.formatterBRL(props.amount)}
           </p>
           <p>{props.description}</p>
-        </div>
-        <div className="self-start">
-          <Favorite id={props.id} />
         </div>
       </div>
     </article>

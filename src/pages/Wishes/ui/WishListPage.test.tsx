@@ -26,7 +26,7 @@ describe('<WishListPage />', () => {
     )
 
     render(
-      <MemoryRouter initialEntries={['/dashboard/wish-list']}>
+      <MemoryRouter initialEntries={['/wish-list']}>
         <Routes />
       </MemoryRouter>
     )
@@ -41,7 +41,7 @@ describe('<WishListPage />', () => {
   })
   test('Should not display an empty message if wish list is not empty', async () => {
     render(
-      <MemoryRouter initialEntries={['/dashboard/wish-list']}>
+      <MemoryRouter initialEntries={['/wish-list']}>
         <Routes />
       </MemoryRouter>
     )

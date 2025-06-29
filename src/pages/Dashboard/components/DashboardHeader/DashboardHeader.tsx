@@ -8,7 +8,7 @@ function CurrentUser() {
   if (!data) {
     return (
       <div className="text-right">
-        <Link to="/" className="underline">
+        <Link to="/login" className="underline">
           Fazer login
         </Link>
       </div>

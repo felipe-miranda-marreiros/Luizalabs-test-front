@@ -35,7 +35,7 @@ export function useToggleFavorite(id: string) {
       setIsFavorite(false)
       if (error.status === 403) {
         toast('Faça login para continuar')
-        navigate('/')
+        navigate('/login')
       }
       if (error.status === 400) {
         toast(error.response?.data.errors[0].message)

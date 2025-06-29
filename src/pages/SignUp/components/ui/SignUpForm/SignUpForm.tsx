@@ -23,11 +23,14 @@ import { Link, useNavigate } from 'react-router'
 import { useSignUp } from '@/entities/SignUp'
 import { Error } from '@/shared/components/ui/error'
 import { useQueryClient } from '@tanstack/react-query'
+import { useState } from 'react'
+import { EyeIcon, EyeOffIcon } from 'lucide-react'
 
 export function SignUpForm({
   className,
   ...props
 }: React.ComponentProps<'div'>) {
+  const [isShow, setisShow] = useState(false)
   const { mutate, error, isPending } = useSignUp()
   const navigate = useNavigate()
   const queryClient = useQueryClient()
@@ -53,7 +56,7 @@ export function SignUpForm({
         onSuccess: () => {
           queryClient.resetQueries()
           queryClient.invalidateQueries()
-          navigate('/dashboard/products', { replace: true })
+          navigate('/', { replace: true })
         }
       }
     )
@@ -119,7 +122,28 @@ export function SignUpForm({
                     <FormItem>
                       <FormLabel>Senha</FormLabel>
                       <FormControl>
-                        <Input placeholder="Sua senha" {...field} />
+                        <Input
+                          autoComplete="one-time-code"
+                          inputMode="text"
+                          type={isShow ? 'text' : 'password'}
+                          IconRight={
+                            isShow ? (
+                              <EyeIcon
+                                onClick={() =>
+                                  setisShow((prevState) => !prevState)
+                                }
+                              />
+                            ) : (
+                              <EyeOffIcon
+                                onClick={() =>
+                                  setisShow((prevState) => !prevState)
+                                }
+                              />
+                            )
+                          }
+                          placeholder="Sua senha..."
+                          {...field}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -137,7 +161,7 @@ export function SignUpForm({
               </div>
               <div className="mt-4 text-center text-sm">
                 Deseja fazer login?{' '}
-                <Link to="/" className="underline underline-offset-4">
+                <Link to="/login" className="underline underline-offset-4">
                   Voltar para o login
                 </Link>
               </div>
