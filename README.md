@@ -71,23 +71,12 @@ make install
 
 - `WINDOWS`:
 
-É necessário ter `chocolatey` instalado. Para instalar, abra o `PowerShell`
-em modo administrador e execute os comandos:
-
-```bash
-Set-ExecutionPolicy Bypass -Scope Process
-```
-
-Instale o `chocolatey`:
-
-```bash
-Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
-```
+Abra um terminal do `Git Bash` na raiz do repositório.
 
 Inicie o script `install`:
 
 ```bash
-make install
+sh install.sh
 ```
 
 O que deve ser feito após a finalização do script:
